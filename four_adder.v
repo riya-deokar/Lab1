@@ -22,13 +22,13 @@
 
 module four_adder(
     input Cin,
-    input [3:0]A,
-    input [3:0]B,
+    input[3:0] A,
+    input[3:0] B,
     output [3:0]S,
     output Cout,
     output C3,
     wire w1, w2, w3,
-    output V,
+    output V
     );
     
     full_adder G1(.A(Cin), .B(A[0]), .Cin(B[0]), .Cout(w1), .S(S[0]));

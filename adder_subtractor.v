@@ -21,16 +21,16 @@
 
 
 module adder_subtractor(
-    input [3:0]A,
-    input [3:0]B,
+    input[3:0] A,
+    input[3:0] B,
     input M,
     output C,
     output V,
-    output [3:0]S
-    wire[3:0] w, 
-    wire w0
-    );
-    
+    output[3:0] S
+      );
+     wire[3:0] w;
+    wire w0;
+ 
     xor G1(w[0], M, B[0]);
     xor G2(w[1], M, B[1]);
     xor G3(w[2], M, B[2]);

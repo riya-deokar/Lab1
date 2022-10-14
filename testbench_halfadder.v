@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/14/2022 03:57:20 PM
+// Create Date: 09/29/2022 04:22:25 PM
 // Design Name: 
-// Module Name: testbench_alu
+// Module Name: testbench_halfadder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,20 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench_alu();
-    reg[1:0] S; // select lines
-    reg[3:0] a, b; // input
-    wire[7:0] Y;
-
-    alu_module al(a, b, S, Y) ;
+module testbench_halfadder(
+    );
+    reg A, B; //input 
+    wire S, C; //output 
+    
+    //instantiation
+    half_adder ha(.A(A), .B(B), .S(S), .C(C)); 
+    
     initial begin
-        a=0;
-        b=0;
-        S=0;
+    A=0; 
+    B=0; 
     end
-    always begin
-        #10 {a, b, S} = {a, b, S} + 1'b1;
-        if(a == 4'b1111 && b==4'b1111 && S==2'b11)
-            #10 $stop;
-        end
+    
+    always begin 
+    #10 {A,B} = {A,B} + 1'b1;
+    //#10 $finish; 
+    end
 endmodule

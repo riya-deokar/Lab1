@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/14/2022 03:57:20 PM
+// Create Date: 10/12/2022 04:39:32 PM
 // Design Name: 
-// Module Name: testbench_alu
+// Module Name: testbench_fouradder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,20 +20,24 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench_alu();
-    reg[1:0] S; // select lines
-    reg[3:0] a, b; // input
-    wire[7:0] Y;
-
-    alu_module al(a, b, S, Y) ;
-    initial begin
-        a=0;
-        b=0;
-        S=0;
-    end
-    always begin
-        #10 {a, b, S} = {a, b, S} + 1'b1;
-        if(a == 4'b1111 && b==4'b1111 && S==2'b11)
-            #10 $stop;
-        end
+module testbench_fouradder(
+    );
+    reg Cin; 
+    reg[3:0] A, B; 
+    wire Cout; 
+    wire[3:0] S; 
+    wire V; 
+    
+    four_adder fa(.Cin(Cin), .A(A), .B(B), .Cout(Cout), .S(S), .V(V));
+    
+    initial 
+    begin
+    Cin = 0;
+    A = 0; 
+    B = 0; 
+    end 
+    
+    always begin 
+    #10 {A, B} = {A, B} + 1'b1; 
+    end     
 endmodule

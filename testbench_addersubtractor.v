@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/14/2022 03:57:20 PM
+// Create Date: 10/12/2022 05:35:47 PM
 // Design Name: 
-// Module Name: testbench_alu
+// Module Name: testbench_addersubtractor
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,20 +20,25 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench_alu();
-    reg[1:0] S; // select lines
-    reg[3:0] a, b; // input
-    wire[7:0] Y;
-
-    alu_module al(a, b, S, Y) ;
+module testbench_addersubtractor(
+    );
+       
+    reg M;
+    reg [3:0] A, B; 
+    wire C;
+    wire [3:0] S;
+    wire V;
+    
+    adder_subtractor as(.M(M), .A(A), .B(B), .C(C), .S(S), .V(V));
+    
     initial begin
-        a=0;
-        b=0;
-        S=0;
+    M = 0;
+    A = 0;
+    B = 0;
     end
+    
     always begin
-        #10 {a, b, S} = {a, b, S} + 1'b1;
-        if(a == 4'b1111 && b==4'b1111 && S==2'b11)
-            #10 $stop;
-        end
+    #10 {A,B,M} = {A,B,M} + 1'b1;
+    if(A==4'b1111 && B==4'b1111 && M == 1) #10 $stop;
+    end
 endmodule
